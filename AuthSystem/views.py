@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .models import UserProfile
 from .forms import UserLoginForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
+
 
 
 
@@ -15,23 +18,35 @@ def login_view(request):
         password = form.cleaned_data.get('password')
         user = authenticate(email=email, password=password)
         user_type = request.user
-        print("---------------------------", user_type)
-        login(request, user)
-        if next:
-            return redirect(next)
-        return redirect('studenthome/')
+        if user.is_admin:
+            login(request, user)
+            return redirect('/')
+        elif user.user_type == "Student":
+            login(request, user)
+            return redirect('studenthome/')
 
     context = {
         'login_form': form,
     }
     return render(request, "login.html", context)
 
-def homeview(request):
+@login_required(login_url='login')
+def indexView(request):
+    return render(request, 'index.html')
+
+@login_required(login_url='login')
+def studentHomeView(request):
     return render(request, "studenthome.html")
+
+@login_required(login_url='login')
+def teacherHomeView(request):
+    return render(request, "teacherhome.html")
+
+@login_required(login_url='login')
+def parentHomeView(request):
+    return render(request, "parenthome.html")
+
 
 def logout_view(request):
     logout(request)
     return redirect('/')
-
-def admin_view(request):
-    return redirect('admin/')

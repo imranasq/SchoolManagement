@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block body %}
+    {% if user.is_authenticated and user.is_superuser %}
+
+        <h1>Admin Home</h1>
+        <a href="{% url 'logout' %}"><input type="submit" class="btn btn-danger" value="Logout"></a>
+        <a href="{% url 'student-home' %}"><input type="submit" class="btn btn-danger" value="View Students Info"></a>
+        <a href="{% url 'teacher-home' %}"><input type="submit" class="btn btn-danger" value="View Teachers Info"></a>
+        <a href="{% url 'parent-home' %}"><input type="submit" class="btn btn-danger" value="View Parents Info"></a>
+    {% else %}
+        <h3>Nothing Here. Log in First!! </h3>
+        <a href="{% url 'login' %}"><input type="submit" class="btn btn-success" value="Log In"></a>
+    {% endif %}
+
+{% endblock %}

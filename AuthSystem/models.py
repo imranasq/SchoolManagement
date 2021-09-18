@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+
+
 # Create your models here.
 
 class UserManager(BaseUserManager):
@@ -31,11 +33,11 @@ class UserManager(BaseUserManager):
 
 class UserProfile(AbstractBaseUser):
     USER_CHOICES = (
-    ('Admin', 'Admin'),
     ('Teacher', 'Teacher'),
     ('Parent', 'Parent'),
     ('Student','Student'),
     )
+    username = models.CharField(max_length=100, null=True, blank=True)
     email =models.EmailField(verbose_name="email address", max_length=50, unique=True)
     first_name = models.CharField(max_length=50, blank=False)
     last_name = models.CharField(max_length=50, blank=False)
@@ -48,6 +50,7 @@ class UserProfile(AbstractBaseUser):
     is_active= models.BooleanField(default=True)
     is_staff= models.BooleanField(default=False)
     is_superuser= models.BooleanField(default=False)
+
 
     USERNAME_FIELD="email"
 
