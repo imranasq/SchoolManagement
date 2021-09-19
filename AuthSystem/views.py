@@ -17,13 +17,19 @@ def login_view(request):
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
         user = authenticate(email=email, password=password)
-        user_type = request.user
         if user.is_admin:
+            print(user.user_type)
             login(request, user)
             return redirect('/')
         elif user.user_type == "Student":
             login(request, user)
             return redirect('studenthome/')
+        elif user.user_type == "Teacher":
+            login(request, user)
+            return redirect('teacherhome/')
+        elif user.user_type == "Parent":
+            login(request, user)
+            return redirect('parenthome/')
 
     context = {
         'login_form': form,
@@ -50,3 +56,6 @@ def parentHomeView(request):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+def dashboard_view():
+    return redirect('admin/')
