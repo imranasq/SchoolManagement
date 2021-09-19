@@ -42,15 +42,30 @@ def indexView(request):
 
 @login_required(login_url='login')
 def studentHomeView(request):
-    return render(request, "studenthome.html")
+    context = {}
+    student_obj = UserProfile.objects.filter(email = request.user.email)
+    context = {
+        'students' : student_obj,
+    }
+    return render(request, "studenthome.html", context)
 
 @login_required(login_url='login')
 def teacherHomeView(request):
-    return render(request, "teacherhome.html")
+    context = {}
+    teacher_obj = UserProfile.objects.filter(email = request.user.email)
+    context = {
+        'teachers' : teacher_obj,
+    }
+    return render(request, "teacherhome.html", context)
 
 @login_required(login_url='login')
 def parentHomeView(request):
-    return render(request, "parenthome.html")
+    context = {}
+    parent_obj = UserProfile.objects.filter(email = request.user.email)
+    context = {
+        'parents' : parent_obj,
+    }
+    return render(request, "parenthome.html", context)
 
 
 def logout_view(request):
