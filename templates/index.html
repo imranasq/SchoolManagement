@@ -87,7 +87,7 @@
         <a href="{% url 'parent-home' %}"><input type="submit" class="btn btn-danger" value="View Parents Info"></a>
         <a href="{% url 'dashboard' %}"><input type="submit" class="btn btn-danger" value="Dashboard"></a>
     {% else %}
-        <h3>Nothing Here. Log in First!! </h3>
+        <h3>You are not Allowed to see this page. Log in as an Admin!! </h3>
         <a href="{% url 'login' %}"><input type="submit" class="btn btn-success" value="Log In"></a>
     {% endif %}
 
