@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db.models.fields import CharField
 
 
 
@@ -44,6 +45,11 @@ class UserProfile(AbstractBaseUser):
     profile_pic = models.ImageField(null = True, blank = True, upload_to = 'images/')
     user_type = models.CharField(max_length=10,choices=USER_CHOICES,null=True,blank=False)
     phone = models.CharField(max_length=15, verbose_name="phone")
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    country = models.CharField(max_length=50)
+    position = models.CharField(max_length=100, blank=True)
+
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)
     last_login = models.DateTimeField(verbose_name="last login", auto_now=True)
     is_admin = models.BooleanField(default=False)

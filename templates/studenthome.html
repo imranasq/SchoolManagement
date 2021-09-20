@@ -9,19 +9,22 @@
         <h1>Student Home</h1>
         <div class="container">
             <div class="main-body">
-            
-                  <div class="row gutters-sm">
+                {% for student in students %} 
+                    {% if student.user_type == 'Student' %}
+                <div class="row gutters-sm">
                     <div class="col-md-4 mb-3">
                       <div class="card">
                         <div class="card-body">
+                            
                           <div class="d-flex flex-column align-items-center text-center">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                                {% if student.profile_pic %}
+                                    <img src="{{ student.profile_pic.url }}" alt="Admin" class="circle" width="100">
+                                {% endif %}
                             <div class="mt-3">
-                              <h4>John Doe</h4>
-                              <p class="text-secondary mb-1">Full Stack Developer</p>
-                              <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                              <button class="btn btn-primary">Follow</button>
-                              <button class="btn btn-outline-primary">Message</button>
+                            
+                              <h4>{{ student.username }}</h4>
+                              <p class="text-muted font-size-sm">{{ student.city }}, {{ student.state }}, {{ student.country }}</p>
+                            
                             </div>
                           </div>
                         </div>
@@ -36,7 +39,7 @@
                               <h6 class="mb-0">Full Name</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                              Kenneth Valdez
+                                {{ student.first_name}} {{ student.last_name }}
                             </div>
                           </div>
                           <hr>
@@ -45,7 +48,7 @@
                               <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                              fip@jukmuh.al
+                              {{ student.email }}
                             </div>
                           </div>
                           <hr>
@@ -54,16 +57,7 @@
                               <h6 class="mb-0">Phone</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                              (239) 816-9029
-                            </div>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="col-sm-3">
-                              <h6 class="mb-0">Mobile</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                              (320) 380-4539
+                              {{ student.phone}}
                             </div>
                           </div>
                           <hr>
@@ -72,13 +66,14 @@
                               <h6 class="mb-0">Address</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                              Bay Area, San Francisco, CA
+                                {{ student.city }}, {{ student.state }}, {{ student.country }}
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
         <a href="{% url 'logout' %}"><input type="submit" class="btn btn-danger" value="Logout"></a>

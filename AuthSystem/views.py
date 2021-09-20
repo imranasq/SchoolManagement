@@ -23,13 +23,13 @@ def login_view(request):
             return redirect('/')
         elif user.user_type == "Student":
             login(request, user)
-            return redirect('studenthome/')
+            return redirect('/studenthome')
         elif user.user_type == "Teacher":
             login(request, user)
-            return redirect('teacherhome/')
+            return redirect('/teacherhome')
         elif user.user_type == "Parent":
             login(request, user)
-            return redirect('parenthome/')
+            return redirect('/parenthome')
 
     context = {
         'login_form': form,
