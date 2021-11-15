@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+        Register
+{% endblock %}
+
+
+{% block body %}
+<h1 id="signup">Sign Up</h1>
+<div class = "reg-form">
+    <form id = "register_form" method = "POST">
+        {% csrf_token %}
+       <p><label>Email: </label>{{ register_form.email }}</p> 
+       <p><label>Username: </label>{{ register_form.username }}</p>
+       <p><label>First Name: </label>{{ register_form.first_name }}</p> 
+       <p><label>Last Name: </label>{{ register_form.last_name }}</p>
+       <p><label>Phone No.: </label>{{ register_form.phone }}</p>
+       <p><label>City : </label>{{ register_form.city }}</p>
+       <p><label>State : </label>{{ register_form.state }}</p>
+       <p><label>Country : </label>{{ register_form.country }}</p>
+       <p><label>Password: </label>{{ register_form.password1 }}</p>
+       <p><label>Confirm Password: </label>{{ register_form.password2 }}</p>
+        
+        <input type="submit" class="btn btn-success" value ="Register" > <br>
+        <label>Already have an Account? </label><a href = {% url 'login'  %} class="btn btn-success">Login</a>
+    </form>
+</div>
+
+<br>
+
+{% endblock %}

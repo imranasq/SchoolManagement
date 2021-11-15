@@ -65,3 +65,12 @@
 .shadow-none {
     box-shadow: none!important;
 }
+
+#register_form{
+  width: 600px;
+  margin: 50px auto 0;
+}
+#signup{
+  width: 600px;
+  margin: 0px auto 0;
+}

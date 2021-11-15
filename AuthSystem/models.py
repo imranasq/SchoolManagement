@@ -43,7 +43,7 @@ class UserProfile(AbstractBaseUser):
     first_name = models.CharField(max_length=50, blank=False)
     last_name = models.CharField(max_length=50, blank=False)
     profile_pic = models.ImageField(null = True, blank = True, upload_to = 'images/')
-    user_type = models.CharField(max_length=10,choices=USER_CHOICES,null=True,blank=False)
+    user_type = models.CharField(max_length=10,choices=USER_CHOICES,null=True,blank=True)
     phone = models.CharField(max_length=15, verbose_name="phone")
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
@@ -56,8 +56,9 @@ class UserProfile(AbstractBaseUser):
     is_active= models.BooleanField(default=True)
     is_staff= models.BooleanField(default=False)
     is_superuser= models.BooleanField(default=False)
+    is_verified = models.BooleanField(default = False)
 
-
+    auth_token = models.CharField(max_length=200, null=True, blank=True)
     USERNAME_FIELD="email"
 
     #REQUIRED_FIELDS=['']
