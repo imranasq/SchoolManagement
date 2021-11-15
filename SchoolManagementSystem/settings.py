@@ -78,14 +78,14 @@ AUTH_USER_MODEL = "AuthSystem.UserProfile"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME' : 'school',
-        'USER' : 'root',
-        'PASSWORD' : '',
+    'default':  {
+        'ENGINE' : 'django.db.backends.postgresql',
+        'NAME' : 'schooldb',
+        'USER' : 'postgres',
+        'PASSWORD' : '1234',
         'HOST' : '127.0.0.1',
-        'PORT' : '3306',
-    }
+        'PORT' : '5432',
+	}
 }
 
 
